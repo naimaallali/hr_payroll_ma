@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+	<record id="salary_form_child" model="ir.ui.view">
+            <field name="name">hr.payroll_ma.bulletin_auto.form</field>
+            <field name="model">hr.payroll_ma.bulletin_auto</field>
+	    <field name="inherit_id" ref="nextma_hr_payroll_ma.salary_form" />
+	    <field name="type">form</field>
+            <field name="arch" type="xml">
+		<form string="salary">
+                	<data>
+                    <xpath expr="//form[@string='Saisie mensuelle']/notebook[@colspan='4']/page[@string='Info Salaire']/group/field[@name='normal_hours']" position="after">
+			<!--<field name="hs_hours" string="heures supplémentaires"/>-->
+		 	 
+		   </xpath>
+		</data>
+               </form>
+            </field>
+        </record>
+<record model="ir.actions.act_window" id="bulletin_auto_act">
+			<field name="name">génération des bulletins de paie</field>
+			<field name="res_model">hr.payroll_ma.bulletin_auto</field>
+			<field name="view_type">tree</field>
+			<field name="view_id" ref="salary_form_child"/>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+<menuitem id="hr.menu_bulletin_auto" parent="nextma_hr_payroll_ma.menu_hr_root_payroll_ma" action="bulletin_auto_act" name="génération des bulletins de paie" />
+
+	</data>
+</openerp>

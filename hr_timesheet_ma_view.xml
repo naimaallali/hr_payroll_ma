@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	
+        <record id="hr_timesheet_sheet_form_child" model="ir.ui.view">
+            <field name="name">hr.timesheet.sheet.form</field>
+            <field name="model">hr_timesheet_sheet_ma.sheet</field>
+	    <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form" />
+            <field name="arch" type="xml">
+                	<data>
+                    <xpath expr="//sheet/notebook/page[@string='Summary']" position="replace">
+		 	 <page string="grille">
+                            <widget type="weekly_timesheet" attrs="{'readonly': [['state', 'not in', ['new', 'draft']]]}">
+                            </widget>
+                        </page>
+		   </xpath>
+		</data>
+               
+            </field>
+        </record>
+
+ <record id="ir_actions_server_grill" model="ir.actions.server">
+            <field name="sequence" eval="5"/>
+            <field name="state">code</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="hr_timesheet_sheet.model_hr_timesheet_current_open"/>
+            <field name="code">action = pool.get('hr.timesheet.current.open').open_timesheet(cr, uid, None, context)</field>
+            <field name="condition">True</field>
+            <field name="name">My Timesheet</field>
+        </record>
+<menuitem name="Grille de présence" id="menu_act_hr_timesheet_sheet_form_grille" parent="hr_attendance.menu_hr_time_tracking" action="ir_actions_server_grill" sequence="4"/>
+	</data>
+</openerp>

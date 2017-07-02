@@ -1,0 +1,4 @@
+import hr_payroll_ma
+import hr_presence_ma
+import hr_timesheet_ma
+import wizard

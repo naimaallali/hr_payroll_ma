@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<menuitem id="menu_hr_root_presence_ma" parent="hr.menu_hr_root"
+			name="Présences" />
+
+		<record model="ir.ui.view" id="pointage_form">
+			<field name="name">hr.pointage_ma.form</field>
+			<field name="model">hr.pointage.ma</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Pointage du personnel">
+				<sheet>
+				<group>
+				   <group col="6" colspan="4">
+					<field name="employee_id" />
+				     <newline/>
+					<field name="date_pointage" string="date de pointage"/>
+					<newline/>
+					<field name="action_pointage" string="action du pointage" />
+					<newline/>
+					<field name="type_entree" attrs="{'invisible':[('action_pointage','!=','entree')]}" string="etat de l'entree"/>
+					<newline/>
+					<field name="type_sortie" attrs="{'invisible':[('action_pointage','!=','sortie')]}" string="etat de la sortie"/>
+					<newline/>
+					<field name="presence" string="presence"/>
+					<newline/>
+					<field name="heures_travail" string="heures travaillées"/>
+				 </group>
+				    </group>
+					</sheet>	
+					</form>
+			</field>
+		</record>
+
+
+	      
+
+		<record model="ir.ui.view" id="pointage_tree">
+			<field name="name">hr.pointage_ma.tree</field>
+			<field name="model">hr.pointage.ma</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Pointage du personnel">
+					<field name="employee_id" />
+					<field name="date_pointage" />
+					<field name="action_pointage" />
+					<field name="type_entree" attrs="{'invisible':[('action_pointage','==','sortie')]}" string="etat de l'entree"/>
+				        <field name="type_sortie" attrs="{'invisible':[('action_pointage','==','entree')]}" string="etat de la sortie"/>
+					
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="presence_tree">
+			<field name="name">hr.presence_ma.tree</field>
+			<field name="model">hr.presence.ma</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				
+				<tree string="Les présences" colors="blue:etat_presence=='present';red:etat_presence=='absent'">
+					<field name="employee" string="employee"/>
+					<field name="etat_presence" string="etat presence"/>
+					<field name="entree" string="entree"/>
+					<field name="retard" string="retard"/>
+					<field name="sortie" string="sortie"/>
+					<field name="heures_normal" string="heures normales"/>
+					<field name="heures_supp" string="heures supplémentaires"/>
+				</tree>
+				
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="presence_form">
+			<field name="name">hr.presence_ma.form</field>
+			<field name="model">hr.presence.ma</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				
+				<form string="Les présences">
+					<group col="4" colspan="4">
+					<field name="employee" string="employee"/>
+					<field name="etat_presence" string="etat presence"/>
+					</group>
+					<group col="4" colspan="4">
+					<field name="entree" string="entree"/>
+					<field name="retard" string="retard"/>
+					<field name="sortie" string="sortie"/>
+					<field name="heures_normal" string="heures normales"/>
+					<field name="heures_supp" string="heures supplémentaires"/>
+					</group>
+				</form>
+				
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="rt_presence_form">
+			<field name="name">hr.presence_ma.form</field>
+			<field name="model">hr.rtpresence.ma</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				
+				<form string="Les présences">
+					<group col="4" colspan="4">
+					<field name="employee" string="employee"/>
+					<field name="etat_presence" string="etat presence"/>
+					</group>
+					<group col="4" colspan="4">
+					<field name="entree" string="entree"/>
+					<field name="sortie" string="sortie"/>
+					</group>
+				</form>
+				
+			</field>
+		</record>
+
+	<record model="ir.ui.view" id="rt_presence_tree">
+			<field name="name">hr.rt_presence_ma.tree</field>
+			<field name="model">hr.rtpresence.ma</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				
+				<tree string="Les présences" colors="blue:etat_presence=='present';red:etat_presence=='absent'">
+					<field name="employee" string="employee"/>
+					<field name="etat_presence" string="etat presence"/>
+					<field name="entree" string="entree"/>
+					<field name="sortie" string="sortie"/>
+				</tree>
+				
+			</field>
+		</record>
+
+	<record model="ir.ui.view" id="absence_form">
+			<field name="name">hr.absence_ma.form</field>
+			<field name="model">hr.absence.ma</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				
+				<form string="Les absences">
+					<group col="4" colspan="4">
+					<field name="employee" string="employee"/>
+					<field name="date_debut" string="debut de periode"/>
+					<field name="date_fin" string="fin de periode"/>
+					<field name="absence_hours" string="total des heures absentées"/>
+					</group>
+				</form>
+				
+			</field>
+		</record>
+
+
+	<record model="ir.ui.view" id="absence_tree">
+			<field name="name">hr.absence_ma.tree</field>
+			<field name="model">hr.absence.ma</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				
+				<tree string="Les absences">
+
+					<field name="employee" string="employee"/>
+					<field name="date_debut" string="debut de periode"/>
+					<field name="date_fin" string="fin de periode"/>
+					<field name="absence_hours" string="total des heures absentées"/>
+				</tree>
+				
+			</field>
+		</record>
+
+	   
+
+        <!--Les actions-->
+
+		<record model="ir.actions.act_window" id="pointage_act">
+			<field name="name">Pointage</field>
+			<field name="res_model">hr.pointage.ma</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="presence_act">
+			<field name="name">Les présences</field>
+			<field name="res_model">hr.presence.ma</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="presence_tree"/>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="rt_presence_act">
+			<field name="name">Liste des présences</field>
+			<field name="res_model">hr.rtpresence.ma</field>
+			<field name="view_type">tree</field>
+			<field name="view_id" ref="rt_presence_tree"/>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="absence_act">
+			<field name="name">Liste des absences</field>
+			<field name="res_model">hr.absence.ma</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="absence_tree"/>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+
+	<!--Les menus-->
+
+<menuitem id="menu_hr_pointage_ma" parent="menu_hr_root_presence_ma" action="pointage_act" name="Pointage" sequence="1"/>
+
+<menuitem id="menu_hr_presence_ma" parent="menu_hr_root_presence_ma" action="rt_presence_act" name="Présence en temps réel" sequence="3"/>
+<menuitem id="menu_hr_lst_presence_ma" parent="menu_hr_root_presence_ma" action="presence_act" name="Liste des présences" sequence="2"/>
+
+
+	</data>
+</openerp>
+
+
+		

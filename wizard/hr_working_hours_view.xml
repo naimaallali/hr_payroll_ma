@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+
+        <record id="hr_working_hours_view" model="ir.ui.view">
+            <field name="name">working hours</field>
+            <field name="model">hr.working.hours</field>
+            <field name="arch" type="xml">
+		<form string="Générer les heures de travail à partir de la poiteuse">
+		 <group string="Période des présences">
+		    <field name="creat_timesheet"  colspan="2"/>
+		    <field name="date_debut_pres"  colspan="2"/>
+	            <field name="date_fin_pres"  colspan="2"/>
+			
+	         </group>
+
+		<group string="Période des absences">
+		    <field name="creat_abssheet" colspan="2"/>
+		    <field name="date_debut_abs"  colspan="2"/>
+	            <field name="date_fin_abs"  colspan="2"/>
+			
+	         </group>
+
+		<footer>
+                    <button name="total_absence_hours" string="importer" type="object" default_focus="1" class="oe_highlight"/>
+                    or 
+                    <button string="Annuler" class="oe_link" special="cancel" />
+                </footer>
+
+                </form>
+            </field>
+        </record>
+
+	<record model="ir.actions.act_window" id="working_hours_act">
+			<field name="name">Calcul heures de travail</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.working.hours</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+		        <field name="target">new</field>
+	</record>
+
+	<menuitem id="menu_working_hours_ma" parent="menu_hr_root_presence_ma" action="working_hours_act" name="Calcul des heures de travail" sequence="4"/>
+
+</data>
+</openerp>
+		
